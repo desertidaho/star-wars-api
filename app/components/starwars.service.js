@@ -1,16 +1,34 @@
-import Planet from "../models/starwars.js"
+import Planet from "../models/planets.js"
+import Vehicle from "../models/vehicles.js"
 
 // @ts-ignore
 let _planetApi = axios.create({
   baseURL: 'https://swapi.co/api/planets'
 })
 
+let _vehicleApi = axios.create({
+  baseURL: 'https://swapi.co/api/vehicles'
+})
+
+
 let _state = {
-  planets: []
+  planets: [],
+  nextPrevPlanet: {
+    nextUrl: '',
+    previousUrl: ''
+  },
+  vehicles: [],
+  nextPrevVehicle: {
+    nextUrl: '',
+    previousUrl: ''
+  }
 }
 
 let _subscribers = {
-  planets: []
+  planets: [],
+  nextPrevPlanet: [],
+  vehicles: [],
+  nextPrevVehicle: []
 }
 
 function setState(prop, val) {
@@ -30,10 +48,23 @@ export default class StarWarsService {
     return _state.planets.map(p => new Planet(p))
   }
 
-  getAllPlanetsApi() {
-    _planetApi.get()
+  get Next() {
+    return _state.nextPrevPlanet.nextUrl
+  }
+
+  get Previous() {
+    return _state.nextPrevPlanet.previousUrl
+  }
+
+  getAllPlanetsApi(url = '') {
+    _planetApi.get(url)
       .then(response => {
         let planet = response.data.results.map(d => new Planet(d))
+        let urlData = {
+          nextUrl: response.data.next,
+          previousUrl: response.data.previous
+        }
+        setState('nextPrevPlanet', urlData)
         setState('planets', planet)
       })
       .catch(err => {
@@ -41,14 +72,33 @@ export default class StarWarsService {
       })
   }
 
-  getOnePlanetApi(name) {
-    _planetApi.get(name)
+  get Vehicles() {
+    return _state.vehicles.map(p => new Vehicle(p))
+  }
+
+  get NextVehicle() {
+    return _state.nextPrevVehicle.nextUrl
+  }
+
+  get PreviousVehicle() {
+    return _state.nextPrevVehicle.previousUrl
+  }
+
+  getAllVehiclesApi(url = '') {
+    _vehicleApi.get(url)
       .then(response => {
-        setState('activePlanet', new Planet(response.data))
+        let vehicle = response.data.results.map(d => new Vehicle(d))
+        let urlData = {
+          nextUrl: response.data.next,
+          previousUrl: response.data.previous
+        }
+        setState('nextPrevVehicle', urlData)
+        setState('vehicles', vehicle)
       })
       .catch(err => {
         console.error(err)
       })
   }
+
 
 }

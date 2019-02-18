@@ -5,17 +5,16 @@ export default class Planet {
     this.climate = data.climate
     this.terrain = data.terrain
     this.population = data.population
+    this.url = data.url
   }
 
   planetTemplate() {
     return `
-    <p>${this.name}</p>
-    <p>${this.diameter}</p>
-    <p>${this.climate}</p>
-    <p>${this.terrain}</p>
-    <p>${this.population}</p>
+    <h5>${this.name}</h5>
+    <p>Diameter: ${this.diameter}</p>
+    <p>Climate: ${this.climate}</p>
+    <p>Type of terrain: ${this.terrain}</p>
+    <p class="mb-5">Population: ${this.population}</p>
     `
   }
-
-
 }
