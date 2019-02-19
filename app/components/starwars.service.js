@@ -10,7 +10,6 @@ let _vehicleApi = axios.create({
   baseURL: 'https://swapi.co/api/vehicles'
 })
 
-
 let _state = {
   planets: [],
   nextPrevPlanet: {
@@ -99,6 +98,5 @@ export default class StarWarsService {
         console.error(err)
       })
   }
-
 
 }

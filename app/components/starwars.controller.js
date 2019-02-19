@@ -13,8 +13,8 @@ function drawPlanets() {
 
   //for buttons
   document.querySelector('#planet-buttons').innerHTML = `
-    <button ${_swService.Previous ? '' : 'disabled'} class="btn btn-dark shadow my-3 mx-2" onclick="app.controllers.swController.getPlanets('${_swService.Previous}')">Previous</button>
-    <button ${_swService.Next ? '' : 'disabled'} class="btn btn-dark shadow my-3 mx-2" onclick="app.controllers.swController.getPlanets('${_swService.Next}')">Next</button>`
+    <button ${_swService.Previous ? '' : 'disabled'} class="btn btn-light shadow my-3 mr-2" onclick="app.controllers.swController.getPlanets('${_swService.Previous}')">Previous</button>
+    <button ${_swService.Next ? '' : 'disabled'} class="btn btn-light shadow my-3 mx-2" onclick="app.controllers.swController.getPlanets('${_swService.Next}')">Next</button>`
 }
 
 function drawVehicles() {
@@ -28,7 +28,7 @@ function drawVehicles() {
 
   //for buttons
   document.querySelector('#vehicle-buttons').innerHTML = `
-    <button ${_swService.PreviousVehicle ? '' : 'disabled'} class="btn btn-dark shadow my-3 mx-2" onclick="app.controllers.swController.getVehicles('${_swService.PreviousVehicle}')">Previous</button>
+    <button ${_swService.PreviousVehicle ? '' : 'disabled'} class="btn btn-dark shadow my-3 mr-2" onclick="app.controllers.swController.getVehicles('${_swService.PreviousVehicle}')">Previous</button>
     <button ${_swService.NextVehicle ? '' : 'disabled'} class="btn btn-dark shadow my-3 mx-2" onclick="app.controllers.swController.getVehicles('${_swService.NextVehicle}')">Next</button>`
 }
 
@@ -52,6 +52,5 @@ export default class StarWarsController {
   getVehicles(url) {
     _swService.getAllVehiclesApi(url)
   }
-
 
 }
