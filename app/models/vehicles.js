@@ -11,10 +11,10 @@ export default class Vehicle {
   vehicleTemplate() {
     return `
     <h5>${this.name}</h5>
-    <p>Diameter: ${this.model}</p>
-    <p>Climate: ${this.manufacturer}</p>
-    <p>Type of terrain: ${this.crew}</p>
-    <p class="mb-5">Population: ${this.passengers}</p>
+    <p>Model: ${this.model}</p>
+    <p>Manufacturer: ${this.manufacturer}</p>
+    <p>Number of crew: ${this.crew}</p>
+    <p class="mb-5">Number of passengers: ${this.passengers}</p>
     `
   }
 }
